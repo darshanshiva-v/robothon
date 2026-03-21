@@ -29,8 +29,8 @@ RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o 
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null && \
     apt-get update && apt-get install -y \
     ros-humble-desktop ros-humble-ros-core ros-dev-tools python3-colcon-common-extensions \
-    ros-humble-moveit ros-humble-pymoveit2 ros-humble-xacro ros-humble-joint-state-publisher-gui \
-    ros-humble-controller-manager ros-humble-controllers ros-humble-gazebo-ros2-control \
+    ros-humble-moveit2 ros-humble-pymoveit2 ros-humble-xacro ros-humble-joint-state-publisher-gui \
+    ros-humble-ros2-control ros-humble-ros2-controllers ros-humble-gazebo-ros2-control \
     && rm -rf /var/lib/apt/lists/*
 
 # 5. Install Gazebo Harmonic (Jetty)
