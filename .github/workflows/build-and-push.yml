@@ -24,4 +24,4 @@ jobs:
       with:
         context: ./workshop/dev/docker
         push: true
-        tags: sahillathwal/physical-ai-challange-2026:latest
+        tags: stags: vishalrobotics/physical-ai-challange-2026:latest
