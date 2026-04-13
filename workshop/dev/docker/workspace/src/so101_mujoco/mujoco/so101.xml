@@ -23,12 +23,14 @@
         <geom group="3" condim="3"/>
       </default>
       <default class="collision_gripper">
-        <geom group="3" condim="6" friction="1 5e-3 5e-4" solref="0.01 1" priority="1"
-         rgba="1.0 0 0 1.0" mass="0"/>
+        <!-- Negative margin allows visual meshes to close the gap before physics collision triggers.
+             Higher friction helps securely grasp objects without slipping. -->
+        <geom group="3" condim="6" friction="2.0 0.05 0.005" solref="0.01 1" priority="1"
+         rgba="1.0 0 0 1.0" mass="0" margin="-0.003"/>
       </default>
       <default class="collision_gripper_mesh">
-        <geom group="4" condim="6" friction="1 5e-3 5e-4" solref="0.01 1" priority="1"
-         rgba="1.0 0 0 1.0" mass="0"/>
+        <geom group="4" condim="6" friction="2.0 0.05 0.005" solref="0.01 1" priority="1"
+         rgba="1.0 0 0 1.0" mass="0" margin="-0.003"/>
       </default>
     </default>
 

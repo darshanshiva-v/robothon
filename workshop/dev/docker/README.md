@@ -101,3 +101,32 @@ ros2 service call /pick_front so101_unified_bringup/srv/PickFront "{target_pose:
 ```bash
 ros2 service call /place_object so101_unified_bringup/srv/PlaceObject "{target_pose: {position: {x: -0.40, y: -0.15, z: 0.82}, orientation: {w: 1.0}}, grip_state: false}"
 ```
+
+## 6. Manual MuJoCo Teleoperation
+
+If you want to manually teleoperate the robot in the MuJoCo simulation using your keyboard instead of using ROS 2 services, you can run the MuJoCo bridge and keyboard teleop node directly.
+
+Ensure your workspace is sourced:
+```bash
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+```
+
+**Terminal 1: Start the MuJoCo Viewer and Bridge**
+Run the bridge script directly (this handles physics and opens the viewer):
+```bash
+python3 src/so101_mujoco/scripts/so101_mujoco_bridge.py --model src/so101_mujoco/mujoco/scene.xml
+```
+
+**Terminal 2: Start Keyboard Teleoperation**
+Run the keyboard node to send UDP velocity and position commands:
+```bash
+python3 src/so101_mujoco/scripts/so101_keyboard_teleop.py
+```
+
+*Controls:*
+- **Up/Down/Left/Right**: Move end-effector along X/Y plane
+- **W/S**: Move end-effector linearly up/down (Z axis)
+- **Q/E**: Wrist roll
+- **R/F**: Wrist pitch
+- **Spacebar**: Toggle Gripper Open/Close
