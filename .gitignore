@@ -1,5 +1,7 @@
 __pycache__/
 *.log
+.venv/
+robothon/
 workshop/dev/docker/workspace/MUJOCO_LOG.TXT
 workshop/dev/docker/workspace/build/
 workshop/dev/docker/workspace/install/

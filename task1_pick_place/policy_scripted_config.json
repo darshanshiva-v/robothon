@@ -1,0 +1,12 @@
+{
+  "model_type": "scripted_bc_mlp",
+  "obs_dim": 13,
+  "action_dim": 6,
+  "hidden_dims": [
+    256,
+    256,
+    128
+  ],
+  "best_loss": 7.119589455238057e-06,
+  "dataset_path": "/home/darshan/robothon/physical-ai-challange-2026/task1_pick_place/demos.pkl"
+}
