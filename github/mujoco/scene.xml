@@ -1,0 +1,73 @@
+<mujoco model="scene">
+
+    <!-- Use the real LeRobot SO-101 arm model. -->
+    <include file="so101.xml"/>
+
+    <visual>
+        <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3"/>
+        <global azimuth="160" elevation="-20"/>
+    </visual>
+
+    <asset>
+        <texture type="skybox" builtin="gradient"
+                 rgb1="0.3 0.5 0.7"
+                 rgb2="0 0 0"
+                 width="512" height="3072"/>
+
+        <texture type="2d" name="groundplane" builtin="checker"
+                 rgb1="0.2 0.3 0.4"
+                 rgb2="0.1 0.2 0.3"
+                 width="300" height="300"/>
+
+        <material name="groundplane"
+                  texture="groundplane"
+                  texrepeat="5 5"
+                  reflectance="0.2"/>
+        <material name="source_box_mat" rgba="0.93 0.67 0.28 1"/>
+        <material name="target_box_mat" rgba="0.29 0.63 0.91 1"/>
+        <material name="block_mat" rgba="0.88 0.20 0.24 1"/>
+    </asset>
+
+    <worldbody>
+
+        <light pos="0 0 3" dir="0 0 -1" directional="true"/>
+
+        <!-- A fixed overview camera makes the arm visible immediately on startup. -->
+        <camera name="overview" pos="0.9 -0.9 0.65" xyaxes="0.707 0.707 0 -0.33 0.33 0.88"/>
+
+        <geom name="floor"
+              type="plane"
+              size="2 2 0.1"
+              pos="0 0 0"
+              material="groundplane"/>
+
+        <!-- Source tray holding the object -->
+        <body name="source_box" pos="0.23 -0.16 0.02">
+            <geom type="box" size="0.055 0.055 0.02" material="source_box_mat"/>
+            <geom type="box" size="0.055 0.005 0.025" pos="0 0.05 0.025" material="source_box_mat"/>
+            <geom type="box" size="0.055 0.005 0.025" pos="0 -0.05 0.025" material="source_box_mat"/>
+            <geom type="box" size="0.005 0.055 0.025" pos="0.05 0 0.025" material="source_box_mat"/>
+            <geom type="box" size="0.005 0.055 0.025" pos="-0.05 0 0.025" material="source_box_mat"/>
+            <site name="pick_site" pos="0 0 0.075" size="0.008" rgba="1 0.8 0 1"/>
+        </body>
+
+        <!-- Target tray where the object should be placed -->
+        <body name="target_box" pos="0.23 0.16 0.02">
+            <geom type="box" size="0.055 0.055 0.02" material="target_box_mat"/>
+            <geom type="box" size="0.055 0.005 0.025" pos="0 0.05 0.025" material="target_box_mat"/>
+            <geom type="box" size="0.055 0.005 0.025" pos="0 -0.05 0.025" material="target_box_mat"/>
+            <geom type="box" size="0.005 0.055 0.025" pos="0.05 0 0.025" material="target_box_mat"/>
+            <geom type="box" size="0.005 0.055 0.025" pos="-0.05 0 0.025" material="target_box_mat"/>
+            <site name="place_site" pos="0 0 0.075" size="0.008" rgba="0.2 0.7 1 1"/>
+        </body>
+
+        <!-- Graspable object -->
+        <body name="block" pos="0.23 -0.16 0.065">
+            <freejoint name="block_joint"/>
+            <inertial pos="0 0 0" mass="0.05" diaginertia="0.00004 0.00004 0.00004"/>
+            <geom type="box" size="0.018 0.018 0.018" material="block_mat" density="400" friction="1.5 0.1 0.05"/>
+        </body>
+
+    </worldbody>
+
+</mujoco>
